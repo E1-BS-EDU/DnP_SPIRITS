@@ -5,10 +5,9 @@
 <mapper namespace="com.koko.workweek.kate.admin.mapper.AdminMapper">   
     <!-- 공통코드 리스트 조회 -->
     <select id="getCommonCdListMapper" resultType="com.koko.workweek.kate.admin.dto.CommonCdVo">
-        SELECT  *
+        SELECT  C.*
 		  FROM(
-			 SELECT @rownum:=@rownum+1  RNUM
-			       , M.COM_CD AS parentCd
+			 SELECT M.COM_CD AS parentCd
 			       , M.COM_NM AS parentNm
 			       , D.COM_CD
 			       , D.COM_NM
@@ -16,12 +15,13 @@
 			       , D.ETC_DESC
 			       , D.PARENT_CD 
 			       , (SELECT count(*) FROM TB_COMMON_D  WHERE USE_YN = 'Y' ) as TOTAL_CNT 
-			  FROM TB_COMMON_M M, TB_COMMON_D D, (SELECT @ROWNUM := 0) R
+	                       , ROW_NUMBER() OVER (ORDER BY  D.parent_cd ,D.com_cd) as RNUM
+			  FROM TB_COMMON_M M, TB_COMMON_D D
 			 WHERE M.COM_CD = D.PARENT_CD
 			   AND M.USE_YN = 'Y'
 			   AND D.USE_YN = 'Y'
 			  ) C
-		  WHERE RNUM &gt; (#{page}-1)*10 AND RNUM &lt;= #{page}*10        
+		  WHERE RNUM &gt; (#{page}-1)*10 AND RNUM &lt;= #{page}*10       
     </select>
     
    <!-- 공통코드 마스터 리스트 조회 -->
