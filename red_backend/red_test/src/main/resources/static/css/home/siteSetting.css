@@ -1,0 +1,26 @@
+/***** 목록 리스트 테이블 영역 *************/
+.rwd-table {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rwd-table thead {
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  text-align: center;
+  height: 35px;
+}
+
+.rwd-table tbody td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  height: 35px;
+}
+/***** 목록 리스트 테이블 영역 *************/
+
+#content {
+  resize: none;
+  height: 250px !important;
+}

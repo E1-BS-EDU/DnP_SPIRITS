@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>commonPage</title>
+    <link th:href="@{/css/common/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/commonCd.css}" rel="stylesheet" />
+
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/admin/commonCd.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+
+    <link th:href="@{/css/home/bootstrap.min.css}" rel="stylesheet" />
+    <script src="/js/jquery.twbsPagination.min.js"></script>
+  </head>
+
+  <body>
+    <!-- header 영역 -->
+    <header>공통코드 관리 페이지</header>
+    <hr width="100%" />
+
+    <table class="rwd-table">
+      <thead>
+        <tr>
+          <td width="5%">No.</td>
+          <td width="10%">코드</td>
+          <td width="20%">코드명</td>
+          <td width="20%">비고</td>
+          <td width="25%">비고 설명</td>
+          <td width="5%">상위컬럼</td>
+        </tr>
+      </thead>
+
+      <tbody id="common_list"></tbody>
+    </table>
+
+    <hr width="100%" />
+    <!-- footer -->
+    <div class="paging_nav_container">
+      <!--페이징 네비게이션 영역 시작 -->
+      <div class="paging_div">
+        <ul class="pagination" id="pagination"></ul>
+      </div>
+      <!--페이징 네비게이션 영역 종료 -->
+      <button class="btn_write">
+        <a href="/admin/commonCdDetail?gubun=save">등록</a>
+      </button>
+    </div>
+  </body>
+</html>

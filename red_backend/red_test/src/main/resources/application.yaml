@@ -1,0 +1,64 @@
+## default
+
+server: 
+    port: 8080
+    servlet:
+        session:
+          timeout: 1500
+    
+
+spring:
+   profiles:
+    active: local
+   
+   devtools:
+       livereload: 
+           enabled: true
+   
+   thymeleaf: 
+       enabled: true
+       cache: false
+       mode: HTML
+       suffix: .html
+       prefix: classpath:/templates/
+       check-template-location: true
+       encoding: UTF-8
+       servlet:
+          content-type: text/html
+       view-names: kokoui/*
+   
+   datasource: 
+       hikari:
+          maria:
+             jdbc-url: jdbc:mariadb://127.0.0.1:3306/red_test
+             username: root
+             password: rootroot
+             driver-class-name: org.mariadb.jdbc.Driver
+             multipleStatements: true          
+             
+logging:
+  level:
+     root: DEBUG   #루트 레벨 전체 로깅 레벨 지정
+     com:
+      zaxxer:
+       hikari: OFF
+       HikariConfig: OFF
+     jdbc:
+       audit: OFF
+       resultset: DEBUG
+       resultsettable: DEBUG
+       sqlonly: DEBUG
+       sqltiming: DEBUG
+       connection: OFF
+     org: 
+        springframework: 
+           boot: 
+              autoconfigure: ERROR
+         
+     
+#property
+#logback config
+property.koko.logging.level : DEBUG
+property.koko.logging.path : logs
+#property.koko.logging.path : F://koko/root_red/red_backend/log/local
+property.koko.logging.filename : local_waslog

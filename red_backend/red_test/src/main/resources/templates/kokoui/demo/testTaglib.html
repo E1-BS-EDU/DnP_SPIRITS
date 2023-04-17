@@ -1,0 +1,20 @@
+<!-- 
+	spring security taglib 사용하여 권한 처리 demo
+ -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+</head>
+
+<body>
+	<h1>!!!환영합니다!!!</h1>
+	<div th:text="${info}"></div>
+</body>
+
+</html>

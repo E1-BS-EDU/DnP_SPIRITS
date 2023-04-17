@@ -1,0 +1,42 @@
+## 로컬
+
+server: 
+    port: 8080
+    
+spring:  
+   profiles:
+      active: dev
+      
+   thymeleaf: 
+       enabled: true
+       cache: false
+       mode: HTML
+       suffix: .html
+       prefix: classpath:/templates/
+       check-template-location: true
+       encoding: UTF-8
+       servlet:
+          content-type: text/html
+       view-names: kokoui/*
+    
+   datasource: 
+       hikari:
+          maria:
+             jdbc-url: jdbc:mariadb://127.0.0.1:3306/red_test
+             username: root
+             password: rootroot
+             driver-class-name: org.mariadb.jdbc.Driver
+             
+             
+logging:
+  level:
+     root: DEBUG   #루트 레벨 전체 로깅 레벨 지정
+     
+     
+#property
+#logback config
+koko.logging.level : DEBUG
+koko.logging.path : F://koko/root_red/red_backend/log/local
+koko.logging.filename : local_waslog
+
+

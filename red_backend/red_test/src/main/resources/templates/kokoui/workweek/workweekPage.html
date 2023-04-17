@@ -1,0 +1,201 @@
+<!-- 
+	spring security taglib 사용하여 권한 처리 demo
+ -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WorkWeek</title>
+    <link th:href="@{/css/workweek/workweek.css}" rel="stylesheet" />
+    <link th:href="@{/css/common/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/home/bootstrap.min.css}" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      th:href="@{/js/lib/air-datepicker/dist/css/datepicker.min.css}"
+    />
+    <script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/workweek/workweek.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/lib/air-datepicker/dist/js/datepicker.min.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/lib/air-datepicker/dist/js/i18n/datepicker.ko.js}"
+    ></script>
+  </head>
+
+  <body>
+    <div class="content">
+      <div div class="top">
+        <input
+          class="left_arrow_btn"
+          id="left_btn"
+          type="image"
+          src="/img/cmm/left-arrow.png"
+          onmouseover="this.src='/img/cmm/left-arrow-over.png'"
+          onmouseout="this.src='/img/cmm/left-arrow.png'"
+          onclick="leftButton()"
+        />
+        <div class="center_weekly">
+          <input id="week_no" class="calendar" type="text" autocomplete="off" />
+          <script>
+            $("#week_no").datepicker({
+              language: "ko",
+              autoClose: true,
+              onRenderCell: function (date) {
+                const day = date.getDay();
+                if (day === 0 || day === 6) {
+                  return {
+                    disabled: true,
+                  };
+                }
+              },
+              onSelect: function (date) {
+                selectDate = date;
+                getWeekOf();
+              },
+            });
+          </script>
+        </div>
+        <input
+          class="right_arrow_btn"
+          id="right_btn"
+          type="image"
+          src="/img/cmm/right-arrow.png"
+          onmouseover="this.src='/img/cmm/right-arrow-over.png'"
+          onmouseout="this.src='/img/cmm/right-arrow.png'"
+          onclick="rightButton()"
+        />
+      </div>
+      <form id="form_weeklyWorkWrite" name="form_weeklyWorkWrite" method="POST">
+        <div class="main">
+          <div class="inputArea">
+            <span class="textBox">프로젝트</span>
+            <!-- <select
+              id="siteNo"
+              name="siteNo"
+              class="selectBox"
+              onchange="siteChange(value)"
+            >
+              <option value="">선택</option>
+            </select> -->
+            <div class="select-container">
+              <div class="select-btn">
+                <span id="selectText" class="btn-text">선택</span>
+                <span class="arrow-down">
+                  <img
+                    src="/img/cmm/arrow_down.png"
+                    onclick="showCheckboxes()"
+                  />
+                </span>
+              </div>
+              <div id="checkboxes"></div>
+            </div>
+
+            <span id="resion" class="location">근무지</span>
+          </div>
+
+          <div class="inputArea">
+            <div class="planBox">
+              <span class="textBox">금주 계획</span>
+              <span id="thisWeek" class="dateTextBox"></span>
+            </div>
+            <textarea
+              id="thisWeekPlan"
+              name="thisWeekPlan"
+              class="writeBox"
+            ></textarea>
+          </div>
+          <div class="inputArea">
+            <div class="planBox">
+              <span class="textBox">실적</span>
+              <span id="performanceDate" class="dateTextBox"></span>
+            </div>
+            <textarea
+              id="performance"
+              name="performance"
+              class="writeBox"
+            ></textarea>
+          </div>
+          <div class="inputArea">
+            <div class="planBox">
+              <span class="textBox">차주 계획</span>
+              <span id="nextWeekDate" class="dateTextBox"></span>
+            </div>
+            <textarea
+              id="nextWeekPlan"
+              name="nextWeekPlan"
+              class="writeBox"
+            ></textarea>
+          </div>
+          <div class="inputArea">
+            <span class="textBox">비고</span>
+            <input
+              id="remarks"
+              name="remarks"
+              type="text"
+              class="remarksBox"
+              value=""
+            />
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="buttonArea">
+            <!-- 저장버튼 -->
+            <input
+              type="button"
+              class="saveBtn"
+              value="저장"
+              id="btnSave"
+              onClick="weeklyWorkSave()"
+            />
+            <input
+              type="button"
+              class="saveBtn"
+              value="수정"
+              id="btnUpdate"
+              onClick="weeklyWorkUpdate()"
+            />
+          </div>
+        </div>
+        <input type="hidden" id="weekNo" name="weekNo" />
+      </form>
+    </div>
+
+    <!--alert 팝업 시작 영역-->
+    <div class="alertPopup_layer" id="alertPopup_layer">
+      <div class="alertPopup_box">
+        <!--팝업 이미지-->
+        <div class="alertPopup_img">
+          <img src="/img/cmm/alert.png" width="80px" height="70px" />
+        </div>
+        <!--팝업 타이틀-->
+        <div class="alertPopup_cont">
+          <h5>저장 되었습니다.</h5>
+        </div>
+        <!--팝업 버튼-->
+        <div class="alertPopup_btn" style="float: bottom">
+          <button class="btn_write" onClick="closeAlertPop()">확인</button>
+        </div>
+      </div>
+    </div>
+    <div class="backL" style="display: none">
+      <div class="loading_box">
+        <img
+          src="/img/cmm/loading.gif"
+          style="background-color: transparent"
+          width="128px"
+          height="128px"
+        />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+
+body{
+	margin:0;
+}
+
+/*header 영역*/
+
+header{
+	height:200px;
+	background: tomato;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	
+	background-image: url("/img/space.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* navigation bar */
+nav{
+	display: flex;
+	background: #333333;
+}
+
+nav a{
+	color: white;
+ 	padding: 14px 20px;
+	text-decoration: none;
+	text-align: center;	
+}
+
+nav a:hover{
+	background: #dddddd;
+	color: black;
+}
+
+.container{
+	display: flex;
+	flex-wrap: wap;
+}
+
+/*왼쪽 사이드*/
+
+aside{
+	flex-grow:3;
+	background: #f1f1f1;
+	padding: 20px;
+}
+
+article{
+	flex: 7;
+	background: white;
+	padding: 20px;
+}
+
+.home_notice{
+	background: #0A0904;
+	padding: 5px;
+	height: 30px;
+	display : flex;
+	justify-content: center;
+ 	align-items : center;
+}
+
+.home_notice h4 {
+	text-align: center;		
+}
+
+.fakeimg {
+	background: #aaaaaa;
+	height:200px;
+	width: 100%;
+	padding: 20px;
+}
+
+footer{
+	padding: 20px;
+	text-align: center;
+	background: gray;
+}
+
+/* 반응형 웹 */
+@media all and (max-width: 600px){
+   .container, .nav{
+       flex-direction: column;
+   }
+}
+

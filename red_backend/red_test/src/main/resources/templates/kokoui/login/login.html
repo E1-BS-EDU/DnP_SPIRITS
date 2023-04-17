@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>로그인</title>
+    <link th:href="@{/css/login/login.css}" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/login/login.js}"></script>
+    <script type="module" src="js/login/go.js"></script>
+  </head>
+
+  <body>
+    <header class="header" role="banner">
+      <div class="header_inner">
+        <a href="." class="logo">
+          <h1 class="blind">WORKWEEK</h1>
+        </a>
+      </div>
+    </header>
+    <div id="container" class="container">
+      <div class="content">
+        <div class="login_wrap">
+          <ul class="menu_wrap">
+            <li class="menu_item" role="presentation">
+              <a
+                href="#none"
+                id="loinid"
+                class="menu_id on"
+                role="tab"
+                aria-selected="true"
+              >
+                <span class="menu_text"
+                  ><span class="text">ID 로그인</span></span
+                >
+              </a>
+            </li>
+          </ul>
+          <form
+            id="fr_login"
+            name="fr_login"
+            target="_top"
+            autocomplete="off"
+            th:action="@{/login_proc}"
+            method="POST"
+          >
+            <ul class="panel_wrap">
+              <li class="panel_item" style="display: block">
+                <div class="panel_inner" role="tabpanel" aria-controls="loinid">
+                  <div class="id_pw_wrap">
+                    <div class="input_row" id="id_line">
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="아이디"
+                        title="아이디"
+                        class="input_text"
+                        maxlength="15"
+                        value=""
+                      />
+                      <span class="step_login_url">@enterprise1.co.kr</span>
+                    </div>
+                    <div class="input_row" id="pw_line">
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="비밀번호"
+                        title="비밀번호"
+                        class="input_text"
+                        maxlength="16"
+                      />
+                      <span
+                        role="button"
+                        class="btn_delete"
+                        id="pw_clear"
+                        style="display: none"
+                      >
+                      </span>
+                    </div>
+                    <div class="btn_login_wrap">
+                      <button class="btn_login" id="log.login">
+                        <span class="btn_text">로그인</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </form>
+        </div>
+        <ul class="find_wrap" id="find_wrap">
+          <li>
+            <a id="btn_signUp" href="/login/signUp" class="find_text"
+              >회원가입</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="footer_inner">
+        <div class="footer_copy">
+          <span class="text">Copyright</span>
+          <span class="corp">© 85Wallu</span>
+          <span class="text">All Rights Reserved.</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

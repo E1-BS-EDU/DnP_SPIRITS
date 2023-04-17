@@ -1,0 +1,98 @@
+.search_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* searchArea */
+.searchArea {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  border: 1px solid #eaeaea;
+  padding: 16px;
+}
+
+.btn_container {
+  display: flex;
+  gap: 8px;
+}
+
+.formArea {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.formText {
+  width: 64px;
+  text-align: right;
+}
+
+.textBox {
+  width: 180px;
+  height: 32px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.selectBox {
+  width: 180px;
+  height: 32px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.selectBox:focus,
+.textBox:focus {
+  outline: none !important;
+  border-color: #1f497d;
+  box-shadow: 0 0 6px #1f497d;
+}
+.dateForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.left_arrow_btn {
+  width: 16px;
+  height: 16px;
+  background-image: url("/img/cmm/left-arrow.png");
+  border: none;
+}
+
+.right_arrow_btn {
+  width: 16px;
+  height: 16px;
+  background-image: url("/img/cmm/right-arrow.png");
+  border: none;
+}
+
+.center_weekly {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f497d;
+  width: 200px;
+  height: 32px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.calendar {
+  width: 150px;
+  border: none;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  background-color: #1f497d;
+  background-image: url("/img/cmm/calendar.png");
+  background-repeat: no-repeat;
+  background-position: 100% center;
+}

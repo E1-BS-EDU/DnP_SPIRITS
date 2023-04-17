@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>로그인</title>
+    <link th:href="@{/css/login/login.css}" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/login/signUp.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+  </head>
+
+  <body>
+    <header class="header" role="banner">
+      <div class="header_inner">
+        <a href="/login" class="logo">
+          <h1 class="blind">WORKWEEK</h1>
+        </a>
+      </div>
+    </header>
+    <div id="container" class="container">
+      <div class="content">
+        <div class="login_wrap">
+          <form
+            id="fr_signUp"
+            name="fr_signUp"
+            autocomplete="off"
+            th:action="@{/login/signUp}"
+            method="POST"
+          >
+            <ul class="panel_wrap">
+              <li class="panel_item" style="display: block">
+                <div class="panel_inner" role="tabpanel" aria-controls="loinid">
+                  <div class="id_pw_wrap">
+                    <h3 class="join_title">
+                      <label for="id">사용자 ID</label>
+                    </h3>
+                    <span>
+                      <div class="input_row" id="id_line">
+                        <input
+                          type="text"
+                          id="userId"
+                          name="userId"
+                          placeholder="아이디"
+                          title="아이디"
+                          class="int"
+                          maxlength="15"
+                          value=""
+                        />
+                        <span class="step_url">@enterprise1.co.kr</span>
+                      </div>
+                    </span>
+                    <span id="idBlind" class="error_next_box"></span>
+
+                    <h3 class="join_title">
+                      <label for="inputEmail4">사용자 이름</label>
+                    </h3>
+                    <span>
+                      <div class="input_row" id="id_line">
+                        <input
+                          type="text"
+                          id="userName"
+                          name="userName"
+                          placeholder="이름"
+                          title="사용자 이름"
+                          class="input_text"
+                          maxlength="20"
+                          value=""
+                        />
+                      </div>
+                    </span>
+                    <span id="nameBlind" class="error_next_box"></span>
+
+                    <h3 class="join_title">
+                      <label for="inputEmail4">비밀번호</label>
+                    </h3>
+                    <span>
+                      <div class="input_row" id="pw_line">
+                        <input
+                          type="password"
+                          id="userPw"
+                          name="userPw"
+                          placeholder="비밀번호"
+                          title="비밀번호"
+                          class="input_text"
+                          maxlength="16"
+                        />
+                      </div>
+                      <div class="input_row" id="pw_line">
+                        <input
+                          type="password"
+                          id="userPw2"
+                          name="userPw2"
+                          placeholder="비밀번호 재확인"
+                          title="비밀번호 재확인"
+                          class="input_text"
+                          maxlength="16"
+                        />
+                      </div>
+                    </span>
+                    <span id="pwBlind" class="error_next_box"></span>
+
+                    <h3 class="join_title">
+                      <label for="inputEmail4">팀</label>
+                    </h3>
+                    <span>
+                      <div class="ps_box team_code">
+                        <select
+                          id="teamName"
+                          name="teamName"
+                          class="sel"
+                          aria-label="팀선택"
+                        >
+                          <option value="" selected>팀선택</option>
+                          <option value="BS">BS1팀</option>
+                          <option value="BS2">BS2팀</option>
+                        </select>
+                      </div>
+                    </span>
+                    <span id="teamBlind" class="error_next_box"></span>
+
+                    <h3 class="join_title">
+                      <label for="inputEmail4">생일</label>
+                    </h3>
+                    <span>
+                      <div class="input_row" id="id_line">
+                        <input
+                          type="text"
+                          id="birth"
+                          name="birth"
+                          placeholder="YYYY.MM.DD"
+                          title="생일"
+                          class="input_text"
+                          maxlength="15"
+                          value=""
+                        />
+                      </div>
+                    </span>
+                    <span id="birthBlind" class="error_next_box"></span>
+
+                    <h3 class="join_title">
+                      <label for="inputEmail4">H.P</label>
+                    </h3>
+                    <span>
+                      <div class="input_row" id="id_line">
+                        <input
+                          type="text"
+                          id="phone"
+                          name="phone"
+                          placeholder="000.0000.0000"
+                          title="H.P"
+                          class="input_text"
+                          maxlength="13"
+                          value=""
+                        />
+                      </div>
+                    </span>
+                    <span id="hpBlind" class="error_next_box"></span>
+
+                    <div class="btn_login_wrap">
+                      <button type="submit" class="btn_login" id="cpm_join">
+                        <span class="btn_text">가입완료</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="footer_inner">
+        <div class="footer_copy">
+          <span class="text">Copyright</span>
+          <span class="corp">© 85Wallu</span>
+          <span class="text">All Rights Reserved.</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!-- 
+	spring security taglib 사용하여 권한 처리 demo
+ -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HOME</title>
+    <link th:href="@{/css/home/home.css}" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/home/home.js}"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- header 영역 -->
+      <header class="header" role="banner">
+        <div class="header_inner">
+          <a href="." class="logo">
+            <h1 class="blind">WORKWEEK</h1>
+          </a>
+        </div>
+      </header>
+
+      <!--대표 이미지-->
+      <div class="main_logo">
+        <img src="img/cmm/mainImg.png" alt="main" />
+      </div>
+
+      <!-- 컨텐츠 영역 -->
+
+      <!-- 본문 영역 -->
+      <div class="menu_box">
+        <div class="list_box" name="noticePage">공지사항</div>
+        <div class="list_box" name="workweekPage">주간업무</div>
+        <div class="list_box" name="workingdayPage">Working Day</div>
+        <div class="list_box" name="setting">환경설정</div>
+      </div>
+      <div class="info_box" th:text="${info}"></div>
+    </div>
+  </body>
+</html>

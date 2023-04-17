@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org">
+   <head>
+	 <meta charset="UTF-8" />
+	 <title>mainTabPage</title>
+	 <link th:href="@{/css/home/adminTabpage.css}" rel="stylesheet" />
+	 <script
+	   type="text/javascript"
+	   th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+	 ></script>
+	 <script type="text/javascript" th:src="@{/js/home/adminTabpage.js}"></script>
+   </head>
+ 
+   <body>
+	 <!-- header 영역 -->
+	 <header>
+	   <!--  -->
+	   <div class="hd_area"></div>
+	   <div class="hd_area">
+		 <a>WORKWEEK</a>
+	   </div>
+	   <div class="hd_area">
+		 <!-- <div class="hd_login2"> -->
+		   <img src = "/img/cmm/logout.png" width = "30px" height="30px" style ="padding:15px"  ></img>
+		 <!-- <div class="hd_logoutImg"></div> -->
+		 <!-- <a style="color: black" href="/doLogout">로그아웃</a> -->
+		 <!-- </div> -->
+	   </div>
+	 </header>
+ 
+	 <!-- 컨텐츠 영역 -->
+	 <div class="contents">
+	
+	   <!--  navigation bar -->
+	   <div class="container">
+		 <nav class="topMenu">
+		   <a href="#"></a>
+		 </nav>
+	   </div>
+ 
+	   <!-- 왼쪽 사이드 -->
+	   <!-- <aside>
+			 <ul class="leftMenu">
+					  <li class="menu-item"><a href="#" class="menu-link"> link </a></li> 
+			 </ul>
+ 
+		 </aside> -->
+	   <!-- 본문 영역 -->
+	   
+	   <div class="container">
+		 <article>
+		   <iframe name="mainfrm" src=""></iframe>
+		 </article>
+	   </div>
+	 </div>
+	 <!-- footer -->
+	 <footer>
+	   <h2>Footer</h2>
+	 </footer>
+   </body>
+ </html>
+ 

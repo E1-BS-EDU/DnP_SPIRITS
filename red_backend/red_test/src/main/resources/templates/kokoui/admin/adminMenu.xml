@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menus>
+	<topMenu>
+		<item>
+			<title>공통코드 관리</title>
+			<value>admin/commonCdPage</value>
+			<name>commonCdPage</name>
+		</item>
+		<item>
+			<title>관리자 관리</title>
+			<value>/admin/adminPage</value>
+			<name>adminPage</name>
+		</item>
+	</topMenu>
+	
+</menus>

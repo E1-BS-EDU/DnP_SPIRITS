@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.workweek.kate.admin.mapper.AdminMapper">   
+    <!-- 공통코드 수정 -->
+    <update id="adminListUpdateMapper" parameterType="com.koko.workweek.kate.admin.dto.AdminVo">
+    	  BEGIN NOT ATOMIC
+    	  	declare user_role_id varchar(8);	
+    	  	
+			SELECT user_auth into user_role_id
+			  FROM tb_user
+			 WHERE user_no=#{userNo};
+    	  
+			UPDATE tb_user
+			   SET team_name=#{teamName}, user_auth=#{userAuth}, use_yn=#{useYn}, fin_cre_user_no=#{finCreUserNo}, fin_cre_dtm=now()
+			 WHERE user_no=#{userNo};
+
+			UPDATE tb_role
+			   SET role_id=#{userAuth}, fin_cre_user_no=#{finCreUserNo}, fin_cre_dtm=now()
+			 WHERE user_no=#{userNo} AND role_id=user_role_id;
+	
+		END
+    </update>
+</mapper>

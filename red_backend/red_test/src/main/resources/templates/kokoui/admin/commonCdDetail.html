@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>commonDetail</title>
+    <link th:href="@{/css/admin/commonCd.css}" rel="stylesheet" />
+    <link th:href="@{/css/common/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/home/bootstrap.min.css}" rel="stylesheet" />
+
+    <script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/admin/commonCdDetail.js}"
+    ></script>
+  </head>
+
+  <body>
+    <parentContainer>
+      <!-- header 영역 -->
+      <header>상위코드</header>
+
+      <div>
+        <div class="form-group">
+          <select
+            id="parentCd"
+            name="parentCd"
+            class="selectBox"
+            onchange="parentChange(value)"
+          >
+            <option value="">선택</option>
+          </select>
+        </div>
+      </div>
+      <hr width="100%" />
+      <form method="post" commandName="CommonVo" name="commonForm" class="form">
+        <div class="parent_add_container"></div>
+      </form>
+
+      <div class="parent_btn_container">
+        <button class="parent_add_btn">+상위코드 추가</button>
+      </div>
+    </parentContainer>
+
+    <childContainer id="childContainer">
+      <!-- header 영역 -->
+      <header>하위코드</header>
+      <form
+        method="post"
+        commandName="CommonVo"
+        name="commonChildForm"
+        class="form"
+      >
+        <div class="test1">
+          <div class="div_container1">
+            <label>상위코드</label>
+            <input
+              type="text"
+              id="materCd"
+              name="parentCd"
+              class="form-control"
+              disabled
+            />
+            <label>코드</label>
+            <input type="text" name="comCd" class="form-control" />
+            <label id="idBlind"></label>
+            <label>코드명</label>
+            <input type="text" name="comNm" class="form-control" />
+            <label>비고</label>
+            <input type="text" name="etc" class="form-control" />
+            <label>비고설명</label>
+            <textarea
+              type="text"
+              name="etcDesc"
+              class="form-control"
+              id="content"
+            ></textarea>
+          </div>
+        </div>
+      </form>
+      <hr width="100%" />
+    </childContainer>
+
+    <form method="post" name="commonForm" class="form"></form>
+    <!--form 종료 영역-->
+
+    <!--footer 시작 영역-->
+    <div class="btn_container">
+      <button class="btn_list">
+        <a href="/admin/commonCdPage?" target="mainfrm">목록보기</a>
+      </button>
+      <button class="btn_write" id="btnSave" onClick="validation()"></button>
+    </div>
+    <!--footer 종료 영역-->
+
+    <!--alert 팝업 시작 영역-->
+    <div class="alertPopup_layer" id="alertPopup_layer">
+      <div class="alertPopup_box">
+        <!--팝업 이미지-->
+        <div class="alertPopup_img">
+          <img src="/img/cmm/alert.png" width="80px" height="70px" />
+        </div>
+        <!--팝업 타이틀-->
+        <div class="alertPopup_cont">
+          <h5>저장이 완료되었습니다.</h5>
+        </div>
+        <!--팝업 버튼-->
+        <div class="alertPopup_btn" style="float: bottom">
+          <button class="btn_write" onClick="closeAlertPop()">확인</button>
+        </div>
+      </div>
+    </div>
+    <!--alert 팝업 종료 영역-->
+  </body>
+</html>

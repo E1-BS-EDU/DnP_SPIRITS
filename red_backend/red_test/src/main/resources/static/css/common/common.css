@@ -1,0 +1,259 @@
+body {
+  padding-top: 50px;
+  padding-left: 50px;
+  width: 90%;
+  height: 100%;
+}
+
+/* 타이틀 영역 css */
+header {
+  width: 100%;
+  height: 40px;
+  background: white;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* 실선으로 구분 css */
+hr {
+  background: rgb(149, 179, 215);
+  height: 2px;
+  border: 0;
+  text-align: left;
+  margin-left: 0;
+}
+
+/* 하단 영역 css */
+footer {
+  display: flex;
+  justify-content: right;
+  width: 97%;
+  height: 30px;
+}
+
+/************ 버튼  css 시작 ****************/
+
+/* 버튼 컨테이너  우측정렬 css */
+.btn_container {
+  display: flex;
+  justify-content: right;
+}
+
+/* 등록, 저장 공통 버튼 css */
+.btn_write {
+  background-color: rgb(149, 179, 215);
+  color: white;
+  border: none;
+  width: 60px;
+  height: 36px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn_write a {
+  text-decoration-line: none !important;
+  color: white !important;
+}
+
+/* 재조회, 목록으로 특수 버튼 css */
+.btn_list {
+  background-color: rgb(0, 112, 192);
+  color: white;
+  border: none;
+  width: 100px;
+  height: 36px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.btn_list a {
+  text-decoration-line: none !important;
+  color: white !important;
+}
+
+/* 부정적 버튼 css */
+.btn_cancel {
+  background-color: rgb(165, 165, 165);
+  color: white;
+  border: none;
+  width: 60px;
+  height: 36px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.btn_cancel a {
+  text-decoration-line: none;
+  color: white;
+}
+
+/************ 버튼  css 종료 ****************/
+
+/************ confirm 팝업 관련 css 시작 ************/
+.confirmPopup_layer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/*팝업 박스*/
+.confirmPopup_box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  height: 210px;
+  width: 280px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+}
+
+.confirmPopup_box .confirmPopup_img {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+/*컨텐츠 영역*/
+.confirmPopup_box .confirmPopup_cont {
+  padding: 20px;
+  text-align: center;
+}
+
+/*버튼영역*/
+.confirmPopup_box .confirmPopup_btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 20px;
+  gap: 10px;
+}
+/*확인 버튼 영역*/
+.confirmPopup_box .confirmPopup_btn .btnConfirm {
+  border-radius: 5px;
+}
+/*취소 버튼 영역*/
+.confirmPopup_box .confirmPopup_btn .btnCancel {
+  border-radius: 5px;
+  background-color: #a5a5a5;
+}
+
+/*오버레이 뒷배경*/
+.popup_overlay {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+}
+/************ confirm 팝업 관련 css 종료 ************/
+
+/************ alert 팝업 관련 css 시작 ************/
+.alertPopup_layer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/*팝업 박스*/
+.alertPopup_box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  height: 210px;
+  width: 280px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+}
+
+.alertPopup_box .alertPopup_img {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+/*컨텐츠 영역*/
+.alertPopup_box .alertPopup_cont {
+  padding: 20px;
+  text-align: center;
+}
+
+/*버튼영역*/
+.alertPopup_box .alertPopup_btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 20px;
+  gap: 10px;
+}
+/*확인 버튼 영역*/
+.alertPopup_box .alertPopup_btn .btnConfirm {
+  border-radius: 5px;
+}
+
+/*오버레이 뒷배경*/
+.popup_overlay {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+}
+/************ alert 팝업 관련 css 종료 ************/
+
+/************  페이징 네비게이션 css 시작 ************/
+.paging_nav_container {
+  display: flex;
+  justify-content: center;
+}
+
+.paging_div {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  float: left;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #7e7c7c;
+
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+.page-item.active .page-link {
+  background-color: rgb(149, 179, 215) !important;
+  border-color: rgb(149, 179, 215) !important;
+}
+
+.pagination > li :hover {
+  background: white;
+  color: #7e7c7c;
+  background-color: rgb(149, 179, 215);
+  border-color: rgb(149, 179, 215);
+}
+/************  페이징 네비게이션 css 종료 ************/

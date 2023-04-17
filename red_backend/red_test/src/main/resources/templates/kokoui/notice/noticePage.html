@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>notice</title>
+    <link th:href="@{/css/common/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/notice/notice.css}" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/notice/notice.js}"></script>
+
+    <link th:href="@{/css/home/bootstrap.min.css}" rel="stylesheet" />
+
+    <script src="/js/jquery.twbsPagination.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+  </head>
+
+  <body>
+    <!-- header 영역 -->
+    <header>공지 사항 목록</header>
+
+    <hr width="100%" />
+
+    <table class="rwd-table">
+      <thead>
+        <tr>
+          <td width="10%">No.</td>
+          <td width="55%">제목</td>
+          <td width="10%">작성자</td>
+          <td width="20%">작성일자</td>
+        </tr>
+      </thead>
+
+      <tbody id="notice_list"></tbody>
+    </table>
+
+    <hr width="100%" />
+    <!-- footer -->
+    <div class="paging_nav_container">
+      <!--페이징 네비게이션 영역 시작 -->
+      <div class="paging_div">
+        <ul class="pagination" id="pagination"></ul>
+      </div>
+      <!--페이징 네비게이션 영역 종료 -->
+      <button class="btn_write">
+        <a href="/notice/noticeDetail?gubun=save" target="mainfrm">등록</a>
+      </button>
+    </div>
+  </body>
+</html>

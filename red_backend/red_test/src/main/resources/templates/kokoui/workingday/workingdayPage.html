@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>workingDay</title>
+    <link th:href="@{/css/common/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/workingday/workingday.css}" rel="stylesheet" />
+    <link th:href="@{/css/home/bootstrap.min.css}" rel="stylesheet" />
+
+    <!-- fullcalendar CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.4/index.global.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+
+    <!-- 차후 공공데이터 API로 대체 필요.-->
+    <!-- <script
+      type="text/javascript"
+      th:src="@{/js/lib/fullcalendar-6.1.5/dist/index.global.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/lib/fullcalendar-6.1.5/dist/index.global.min.js}"
+    ></script> -->
+
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/workingday/workingDay.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+  </head>
+
+  <body>
+    <div class="content">
+      <div class="aside">
+        <div id="project">
+          <span class="spanTxt">프로젝트명 :</span>
+          <select class="select" id="siteNo">
+            <option value="">선택</option>
+          </select>
+        </div>
+        <br />
+        <div id="gubun">
+          <span class="spanTxt">구분 코드 :</span>
+          <select class="select" id="gubunCd">
+            <option value="">선택</option>
+          </select>
+        </div>
+        <br />
+        <div class="btn_container">
+          <button id="btn_Save" class="btn_write">저장</button>
+          <!-- <button id="btn_Delete" class="btn_cancel">삭제</button> -->
+        </div>
+      </div>
+      <div class="calendar" id="calendar"></div>
+    </div>
+
+    <!--이벤트 상세 팝업 시작 영역-->
+    <div class="eventPopup_layer" id="eventPopup_layer">
+      <div class="eventPopup_box">
+        <!--팝업 내용-->
+        <div class="eventPopup_cont">
+          <!-- <span class="eventPopup_data">구분코드 : </span><br />
+          <span class="eventPopup_data">구분명 : </span><br />
+          <span class="eventPopup_data">프로젝트명 : </span><br /> -->
+          <input type="hidden" id="popId" value="" />
+          <input type="hidden" id="popWorkDate" value="" />
+          <table class="eventPopup_table">
+            <colgroup>
+              <col width="100px" />
+              <col width="*" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <th>구분코드 :</th>
+                <td id="popGubunCd"></td>
+              </tr>
+              <tr>
+                <th>대구분 :</th>
+                <td id="popGubunA"></td>
+              </tr>
+              <tr>
+                <th>구분명 :</th>
+                <td id="popGubunB"></td>
+              </tr>
+              <tr>
+                <th>구분설명 :</th>
+                <td id="popGubunDesc"></td>
+              </tr>
+              <tr>
+                <th>프로젝트명 :</th>
+                <td id="popSite"></td>
+              </tr>
+              <tr>
+                <th>지역 :</th>
+                <td id="popResion"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--팝업 버튼-->
+        <div class="eventPopup_btn" style="float: bottom">
+          <button class="btn_write" onClick="closeEventPop()">확인</button>
+          <button class="btn_write" onClick="delEventPop()">삭제</button>
+        </div>
+      </div>
+    </div>
+    <!--이벤트 상세 팝업 종료 영역-->
+
+    <!--alert 팝업 시작 영역-->
+    <div class="alertPopup_layer" id="alertPopup_layer">
+      <div class="alertPopup_box">
+        <!--팝업 이미지-->
+        <div class="alertPopup_img">
+          <img src="/img/cmm/alert.png" width="80px" height="70px" />
+        </div>
+        <!--팝업 타이틀-->
+        <div class="alertPopup_cont">
+          <h5>저장이 완료되었습니다.</h5>
+        </div>
+        <!--팝업 버튼-->
+        <div class="alertPopup_btn" style="float: bottom">
+          <button class="btn_write" onClick="closeAlertPop()">확인</button>
+        </div>
+      </div>
+    </div>
+    <!--alert 팝업 종료 영역-->
+    <input type="hidden" id="gv_user_no" th:value="${gv_user_no}" />
+  </body>
+</html>

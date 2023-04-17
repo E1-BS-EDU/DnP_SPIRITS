@@ -1,0 +1,58 @@
+<!-- 
+	spring security taglib 사용하여 권한 처리 demo
+ -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HOME</title>
+    <link th:href="@{/css/home/home.css}" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/home/home.js}"></script>
+  </head>
+
+  <body>
+    <!-- header 영역 -->
+    <header>
+      <!--  -->
+      <div class="hd_area"></div>
+      <div class="hd_area">
+        <a href="/home/mainTabpage">My HOME</a>
+        <p>우린 간다.<strong>열심히!</strong></p>
+      </div>
+      <div class="hd_area">
+        <div class="hd_login" id="hd_login" th:text="${info}"></div>
+        <div class="hd_login2">
+          <a style="color: white" href="/doLogout">로그아웃</a>
+        </div>
+      </div>
+    </header>
+
+    <!--  navigation bar -->
+    <nav class="topMenu">
+      <a href="#">ttttttttt</a>
+    </nav>
+
+    <!-- 컨텐츠 영역 -->
+    <div class="container">
+      <!-- 왼쪽 사이드 -->
+      <aside>
+        <ul class="leftMenu">
+          <!-- 	<li class="menu-item"><a href="#" class="menu-link"> link </a></li> -->
+        </ul>
+      </aside>
+      <!-- 본문 영역 -->
+      <article>
+        <iframe name="mainfrm" src=""></iframe>
+      </article>
+    </div>
+    <!-- footer -->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+  </body>
+</html>

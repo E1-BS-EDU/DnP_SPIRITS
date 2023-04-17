@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>siteSetting</title>
+    <link th:href="@{/css/common/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/admin.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/js/lib/tui-grid/dist/tui-grid.css}" />
+    <link th:href="@{/css/home/bootstrap.min.css}" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      th:href="@{/js/lib/air-datepicker/dist/css/datepicker.min.css}"
+    />
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/lib/tui-grid/dist/tui-grid.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/admin.js}"></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/lib/air-datepicker/dist/js/datepicker.min.js}"
+    ></script>
+    <script
+      type="text/javascript"
+      th:src="@{/js/lib/air-datepicker/dist/js/i18n/datepicker.ko.js}"
+    ></script>
+  </head>
+
+  <body>
+    <!-- header 영역 -->
+    <header>관리자 관리 페이지</header>
+    <hr width="100%" />
+    <form id="form_searchData" name="form_searchData" method="POST">
+      <div class="search_container">
+        <div class="btn_container">
+          <div div class="dateForm">
+            <input
+              class="left_arrow_btn"
+              id="left_btn"
+              type="button"
+              onclick="leftButton()"
+            />
+            <div class="center_weekly">
+              <input
+                id="week_no"
+                class="calendar"
+                type="text"
+                autocomplete="off"
+              />
+              <script>
+                $("#week_no").datepicker({
+                  language: "ko",
+                  autoClose: true,
+                  onRenderCell: function (date) {
+                    const day = date.getDay();
+                    if (day === 0 || day === 6) {
+                      return {
+                        disabled: true,
+                      };
+                    }
+                  },
+                  onSelect: function (date) {
+                    selectDate = date;
+                    adminPageListSearch();
+                  },
+                });
+              </script>
+            </div>
+            <input
+              class="right_arrow_btn"
+              id="right_btn"
+              type="button"
+              onclick="rightButton()"
+            />
+          </div>
+          <button class="btn_write">엑셀</button>
+          <input
+            type="button"
+            class="btn_list"
+            onclick="adminPageListSearch()"
+            value="조회"
+          />
+        </div>
+        <div class="searchArea">
+          <div class="formArea">
+            <span class="formText">이름</span>
+            <input
+              id="userName"
+              name="userName"
+              type="text"
+              class="textBox"
+              value=""
+            />
+          </div>
+          <div class="formArea">
+            <span class="formText">팀</span>
+            <select id="teamName" name="teamName" class="selectBox">
+              <option value="">전체</option>
+              <option value="BC">BC본부</option>
+              <option value="BI">BI본부</option>
+              <option value="BS">BS본부</option>
+              <option value="TS">TS본부</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr width="100%" />
+    <div id="grid"></div>
+
+    <hr width="100%" />
+    <!-- footer -->
+    <div class="paging_nav_container">
+      <!--페이징 네비게이션 영역 시작 -->
+      <div class="paging_div">
+        <ul class="pagination" id="pagination"></ul>
+      </div>
+      <!--페이징 네비게이션 영역 종료 -->
+      <button id="saveBtn" class="btn_write" onclick="saveBtnClick()">
+        저장
+      </button>
+    </div>
+
+    <!--alert 팝업 시작 영역-->
+    <div class="alertPopup_layer" id="alertPopup_layer">
+      <div class="alertPopup_box">
+        <!--팝업 이미지-->
+        <div class="alertPopup_img">
+          <img src="/img/cmm/alert.png" width="80px" height="70px" />
+        </div>
+        <!--팝업 타이틀-->
+        <div class="alertPopup_cont">
+          <h5>저장 되었습니다.</h5>
+        </div>
+        <!--팝업 버튼-->
+        <div class="alertPopup_btn" style="float: bottom">
+          <button class="btn_write" onClick="closeAlertPop()">확인</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="backL" style="display: none">
+      <div class="loading_box">
+        <img
+          src="/img/cmm/loading.gif"
+          style="background-color: transparent"
+          width="128px"
+          height="128px"
+        />
+      </div>
+    </div>
+  </body>
+</html>

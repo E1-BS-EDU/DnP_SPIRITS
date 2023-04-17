@@ -1,0 +1,133 @@
+<!-- 
+	spring security taglib 사용하여 권한 처리 demo
+ -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+</head>
+
+<body>
+
+	<div class="hd_login" id="hd_login" th:text="'사용자 정보  : '+${info}"></div>
+	
+	---------------------------------------------------------------------------------------------
+	</br>
+	</br>
+	---------------------------------------------------------------------------------------------
+	
+	<div sec:authorize="hasAuthority('ADMIN')">
+	관리자인 경우 보임
+	</div>
+	
+	<div sec:authorize="hasAuthority('USER')">
+	유저인 경우 보임
+	</div>
+	
+	<div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+	  This will only be displayed if authenticated user has role ROLE_ADMIN.
+	</div>
+	
+	<div th:if="${#authorization.expression('hasAuthority(''USER'')')}">
+	  This will only be displayed if authenticated user has role ROLE_USER.
+	</div>
+	
+	---------------------------------------------------------------------------------------------
+	</br>
+	</br>
+	---------------------------------------------------------------------------------------------
+	<div sec:authorize="isAuthenticated()">
+	인증된 경우
+	</div>
+	<div sec:authorize="isAnonymous()">
+	누구나
+	</div>
+	---------------------------------------------------------------------------------------------
+	</br>
+	</br>
+	---------------------------------------------------------------------------------------------
+
+	<!-- 해당 권한이 있는경우 -->
+	<div sec:authorize ="hasRole('USER')">
+ 	 1. 유저 페이지~~~~
+	</div >
+	</br>
+	</br>
+
+	<div sec:authorize ="hasRole('ADMIN')">
+ 	 2. 관리자 페이지
+	</div >
+
+	</br>
+	</br>
+
+	<!-- 포함된 권한 중 하나라도 있을경우 -->
+	<div sec:authorize ="hasRole('USER')">
+ 	 3.유저 페이지
+	</div>
+
+	</br>
+	</br>
+
+<!-- 	<div sec:authorize ="isAuthenticated()">
+    4. 인증된경우
+	</div> -->
+	
+	<!-- 권한이 없는 익명의 사용자일 경우 -->
+<!-- 	<div  sec:authorize ="isAnonymous()">
+	 5. 아무나? 권한이 없는 익명의 사용자일 경우
+	</div> -->
+	
+	<!-- 자동 로그인을 사용하는 경우 -->
+<!-- 	<div  sec:authorize ="isRememberMe()">
+	 6. 자동 로그인을 사용하는 경우
+	</div> -->
+	
+	---------------------------------------------------------------------------------------------
+	</br>
+	</br>
+	---------------------------------------------------------------------------------------------
+	
+	<form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+		<button sec:authorize="isAuthenticated()" type="submit">Logout</button>
+		<button sec:authorize="isAnonymous()" th:href="@{/login}" type="submit">Login</button>
+	</form>
+
+	---------------------------------------------------------------------------------------------
+	</br>
+	</br>
+	---------------------------------------------------------------------------------------------
+	<!-- 
+	
+		Spring Security에서 Role의 경우에는 prefix로 "ROLE_" 이라는 문자를 붙인다. 따라서 다음의 둘 중 하나를 선택해서 적용해야 한다.
+
+		DB상 role 정보에 prefix로 "ROLE_"을 붙여준다.
+		hasRole 대신 hasAuthority를 사용한다
+		
+	 -->
+
+	<li class="nav-item"><a class="nav-link" href="#" th:href="@{~/index}"><i class="fa fa-home"></i>Home</a></li>
+	<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" href="#" th:href="@{~/profile/index}">Profile</a></li>
+	<li sec:authorize="hasRole('USER')" class="nav-item"><a class="nav-link" href="#" th:href="@{~/admin/index}">USER</a></li>
+	<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a class="nav-link" href="#" th:href="@{~/admin/index}">USER</a></li>
+	<li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" href="#" th:href="@{~/admin/index}">Admin</a></li>
+	<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a class="nav-link" href="#" th:href="@{~/admin/index}">Admin</a></li>
+	<li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')" class="nav-item"><a class="nav-link" href="#" th:href="@{~/management/index}">Management</a>
+
+		</br> </br>
+	<li sec:authorize="hasAuthority('USER')" class="nav-item"><a class="nav-link" href="#" th:href="@{~/admin/index}">USER</a></li>
+	<li sec:authorize="hasAuthority('ADMIN')" class="nav-item"><a class="nav-link" href="#" th:href="@{~/admin/index}">Admin</a></li>
+	</li>
+	---------------------------------------------------------------------------------------------
+	</br>
+	</br>
+	---------------------------------------------------------------------------------------------
+	
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menus>
+	<topMenu>
+		<item>
+			<title>공지사항</title>
+			<value>/notice/noticePage</value>
+			<name>noticePage</name>
+		</item>
+		<item>
+			<title>주간 업무</title>
+			<value>/workweek/workweekPage</value>
+			<name>workweekPage</name>
+		</item>
+		<item>
+			<title>Working Day</title>
+			<value>/workingday/workingdayPage</value>
+			<name>workingdayPage</name>
+		</item>
+	</topMenu>
+	
+</menus>

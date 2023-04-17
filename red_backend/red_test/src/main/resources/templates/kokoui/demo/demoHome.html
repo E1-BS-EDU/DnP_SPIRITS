@@ -1,0 +1,79 @@
+<!-- 
+	spring security taglib 사용하여 권한 처리 demo
+ -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>HOME</title>
+<link th:href="@{/css/demo/demoHome.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+</head>
+
+<body>
+	<!-- notice 영역 -->
+	<div class="home_notice">
+		<h4>오슈 오슈</h4>
+	</div>
+
+	<!-- header 영역 -->
+	<header>
+		<h1>My HOME</h1>
+		<p>
+			우린 간다.<Strong>열심히!</Strong>
+		</p>
+		
+	</header>
+
+	<!--  navigation bar -->
+	<nav>
+		<a href="#"> link </a> 
+		<a href="#"> link </a> 
+		<a href="#"> link </a> 
+		<a href="#"> link </a>
+	</nav>
+
+	<!-- 컨텐츠 영역 -->
+	<div class="container">
+		<!-- 왼쪽 사이드 -->
+		<aside>
+			<h2>About me</h2>
+			<h5>photo of me:</h5>
+			<div class="fakeimg">IMAGE</div>
+			<p>Some text about me</p>
+
+			<h3>More Text</h3>
+			<p>This is text region</p>
+			<div class="fakeimg">IMAGE</div>
+			<div class="fakeimg">IMAGE</div>
+			<div class="fakeimg">IMAGE</div>
+		</aside>
+		<!-- 본문 영역 -->
+		<article>
+			<h2>TITLE HEADING</h2>
+			<h5>title description, Dec,7, 2019</h5>
+			<div class="fakeimg">Image</div>
+			<p>Some text ...</p>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sint odio nesciunt qui incidunt assumenda similique, quisquam amet dolor esse
+				explicabo quam voluptatibus velit odit error cumque cum rem aspernatur!</p>
+
+
+			<h2>TITLE HEADING</h2>
+			<h5>title description, Dec,7, 2019</h5>
+			<div class="fakeimg">Image</div>
+			<p>Some text ...</p>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit sint odio nesciunt qui incidunt assumenda similique, quisquam amet dolor esse
+				explicabo quam voluptatibus velit odit error cumque cum rem aspernatur!</p>
+
+		</article>
+	</div>
+	<!-- footer -->
+	<footer>
+		<h2>Footer</h2>
+	</footer>
+	
+</body>
+
+</html>

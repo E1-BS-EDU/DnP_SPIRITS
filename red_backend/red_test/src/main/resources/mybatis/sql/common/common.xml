@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.workweek.kate.common.mapper.CommonMapper">   
+    <!-- 공통코드 리스트 조회 -->
+    <select id="getcommonCdSearchMapper" parameterType="java.util.List"  resultType="com.koko.workweek.kate.common.dto.CommonCdVo">
+		 SELECT  M.COM_CD AS parentCd
+		       , M.COM_NM AS parentNm
+		       , D.COM_CD
+		       , D.COM_NM
+		       , D.ETC
+		       , D.ETC_DESC
+		       , D.PARENT_CD 
+		  FROM TB_COMMON_M M, TB_COMMON_D D
+		 WHERE M.COM_CD = D.PARENT_CD
+		   AND M.USE_YN = 'Y'
+		   AND D.USE_YN = 'Y'
+		   AND M.COM_CD IN <foreach collection="commonCdList" item="comCd" index="index" separator="," open="(" close=")">
+					          #{comCd}
+					       </foreach>
+    </select>
+    
+
+    
+</mapper>

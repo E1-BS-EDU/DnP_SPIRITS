@@ -1,0 +1,268 @@
+html,
+body {
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 16px;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.left_arrow_btn {
+  width: 16px;
+  height: 16px;
+}
+
+.right_arrow_btn {
+  width: 16px;
+  height: 16px;
+}
+
+.center_weekly {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f497d;
+  width: 200px;
+  height: 32px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.n_weekly {
+  margin: auto;
+}
+
+.calendar {
+  width: 150px;
+  border: none;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  background-color: #1f497d;
+  background-image: url("/img/cmm/calendar.png");
+  background-repeat: no-repeat;
+  background-position: 100% center;
+}
+
+.inputArea {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 620px;
+}
+
+.textBox {
+  width: 80px;
+  text-align: right;
+}
+
+.selectBox {
+  width: 280px;
+  height: 28px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  outline: none;
+}
+
+.selectBox:focus {
+  outline: none !important;
+  border-color: #1f497d;
+  box-shadow: 0 0 6px #1f497d;
+}
+
+.writeBox {
+  width: 516px;
+  height: 120px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  resize: none;
+  outline: none;
+  padding: 8px 10px;
+}
+
+.writeBox:focus {
+  outline: none !important;
+  border-color: #1f497d;
+  box-shadow: 0 0 6px #1f497d;
+}
+
+.remarksBox {
+  width: 516px;
+  height: 28px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  resize: none;
+  outline: none;
+  padding: 8px 10px;
+}
+
+.remarksBox:focus {
+  outline: none !important;
+  border-color: #1f497d;
+  box-shadow: 0 0 6px #1f497d;
+}
+
+.planBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateTextBox {
+  font-size: 12px;
+  text-align: right;
+}
+
+.location {
+  width: 280px;
+  height: 28px;
+  border: 1px solid #bcbcbc;
+  background-color: #eaeaea;
+  border-radius: 8px;
+  padding: 2px 12px;
+  text-align: left;
+}
+
+.buttonArea {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+  width: 620px;
+}
+
+.saveBtn {
+  padding: 3px 15px;
+  background-color: #95b3d7;
+  border: 1px solid #95b3d7;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background-color: #1f497d;
+  border: 1px solid #1f497d;
+}
+
+.backL {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 503;
+}
+
+.loading_box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -64px;
+  margin-top: -64px;
+}
+
+.select-container {
+  position: relative;
+  max-width: 220px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.select-btn {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border: 1px solid #bcbcbc;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #fff;
+}
+.select-btn .btn-text {
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arrow-down {
+  display: flex;
+}
+
+/**/
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  position: fixed;
+  width: 220px;
+  background-color: #fff;
+}
+
+#checkboxes label {
+  display: block;
+  margin: 4px 0;
+}
+
+#checkboxes label:hover {
+  background-color: #6cc0ff;
+}
+
+.siteCheck {
+  margin-left: 5px;
+}
+
+/* 반응형 웹 */
+@media all and (max-width: 600px) {
+  .inputArea {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 400px;
+  }
+
+  .selectBox {
+    width: 212px;
+    height: 28px;
+  }
+
+  .writeBox {
+    width: 100%;
+    height: 90px;
+    resize: none;
+  }
+
+  .remarksBox {
+    width: 304px;
+    height: 28px;
+    resize: none;
+  }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.workweek.login.mapper.LoginMapper">
+    <!-- 회원가입 -->
+    <insert id="saveUser" parameterType="com.koko.workweek.login.dto.UserVo">
+
+		BEGIN NOT ATOMIC
+			declare v_user_no int;		
+			
+			select ifnull(max(user_no),0)+1
+			  into v_user_no
+			  from tb_user tu;
+			  
+			INSERT INTO tb_user
+			(user_no, user_id, user_pw, user_name, team_name, user_auth, use_yn, vbg_cre_user_no, vbg_cre_dtm, fin_cre_user_no, fin_cre_dtm)
+			VALUES(v_user_no ,#{userId} ,#{userPw} ,#{userName} ,#{teamName} ,#{userAuth} ,'Y' ,v_user_no ,NOW() ,v_user_no ,NOW());
+	   		
+	   		INSERT INTO tb_user_detail
+			(user_no, birth, phone, vbg_cre_user_no, vbg_cre_dtm, fin_cre_user_no, fin_cre_dtm)
+			VALUES(v_user_no, #{birth} ,#{phone} ,v_user_no ,NOW() ,v_user_no ,NOW());
+			
+			INSERT INTO tb_role
+			(user_no, role_id, role_name, vbg_cre_user_no, vbg_cre_dtm, fin_cre_user_no, fin_cre_dtm)
+			VALUES(v_user_no, 'USER' ,'일반사용자' ,v_user_no ,NOW() ,v_user_no ,NOW());
+	
+		END	     
+    </insert>
+    
+    <!-- ID check -->
+    <select id="checkId" parameterType = "String" resultType="int">
+
+        SELECT COUNT(*) AS CNT
+        FROM tb_user A
+        WHERE A.USER_ID = #{userId}
+        
+    </select>
+</mapper>

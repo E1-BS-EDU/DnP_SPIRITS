@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.workweek.login.mapper.UserMapper">   
+    <!-- 로그인 -->
+    <select id="getUserAccount" resultType="com.koko.workweek.login.dto.UserVo">
+
+        select a.user_no ,a.user_id ,a.user_pw ,a.user_name ,a.team_name
+              ,a.vbg_cre_user_no, a.vbg_cre_dtm, a.fin_cre_user_no, a.fin_cre_dtm
+              ,GROUP_CONCAT(b.role_id) AS user_auth
+         from  tb_user A , tb_role B
+        where a.user_no = b.user_no
+          and a.user_id = #{userId}
+		group by a.user_no
+        
+    </select>
+</mapper>

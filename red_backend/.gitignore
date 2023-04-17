@@ -1,0 +1,14 @@
+
+#제외할 폴더
+.metadata/
+logs/
+target/
+
+
+#제외할 파일
+.log
+
+
+
+
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>workingDayPage</title>
+    <link th:href="@{/css/common/common.css}" rel="stylesheet" />
+    <link th:href="@{/css/admin/workingDay.css}" rel="stylesheet" />
+
+    <script
+      type="text/javascript"
+      th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"
+    ></script>
+    <script type="text/javascript" th:src="@{/js/admin/workingDay.js}"></script>
+
+    <link th:href="@{/css/home/bootstrap.min.css}" rel="stylesheet" />
+    <script src="/js/jquery.twbsPagination.min.js"></script>
+  </head>
+
+  <body>
+    <!-- header 영역 -->
+    <header>WorkingDay 관리 페이지</header>
+    <hr width="100%" />
+
+    <table class="rwd-table">
+      <thead>
+        <tr>
+          <td width="5%">No.</td>
+          <td width="10%">대구분</td>
+          <td width="20%">구분</td>
+          <td width="20%">구분코드</td>
+          <td width="25%">내용</td>
+        </tr>
+      </thead>
+
+      <tbody id="common_list"></tbody>
+    </table>
+
+    <hr width="100%" />
+    <!-- footer -->
+    <div class="paging_nav_container">
+      <!--페이징 네비게이션 영역 시작 -->
+      <div class="paging_div">
+        <ul class="pagination" id="pagination"></ul>
+      </div>
+      <!--페이징 네비게이션 영역 종료 -->
+      <button class="btn_write">
+        <a href="/common/commonDetail?gubun=save">등록</a>
+      </button>
+    </div>
+  </body>
+</html>

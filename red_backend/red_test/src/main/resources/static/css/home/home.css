@@ -1,0 +1,106 @@
+html {
+  height: 100%;
+  font-size: 14px;
+}
+
+head {
+  display: none;
+}
+
+body {
+  height: 100%;
+  color: #222;
+  background-color: #2174bb;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.header {
+  padding-bottom: 48px;
+  box-sizing: border-box;
+}
+
+.header .header_inner {
+  position: relative;
+  width: 420px;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.header .logo {
+  display: inline-block;
+  margin-top: 108px;
+  vertical-align: top;
+  color: white;
+  font-weight: bold;
+  background-position: 0 -51px;
+  background-repeat: no-repeat;
+  width: 155px;
+  height: 30px;
+}
+
+.header_inner a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*메인 이미지 영역*/
+.main_logo {
+  padding-bottom: 48px;
+  box-sizing: border-box;
+  position: relative;
+  width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/*본문 영역*/
+
+.menu_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.list_box {
+  width: 340px;
+  height: 60px;
+  font-size: 25px;
+  color: white;
+  margin: 2px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list_box:hover {
+  background: #ff89b3;
+  color: white;
+  cursor: pointer;
+}
+
+/* 유저 정보 영역 */
+.info_box {
+  color: white;
+  margin: 2px;
+  padding-top: 48px;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  overflow: auto;
+}
