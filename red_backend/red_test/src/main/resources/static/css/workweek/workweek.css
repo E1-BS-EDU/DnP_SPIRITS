@@ -145,6 +145,9 @@ body {
   border-radius: 8px;
   padding: 2px 12px;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .buttonArea {
@@ -248,10 +251,12 @@ body {
     gap: 16px;
     width: 400px;
   }
+  .select-container {
+    width: 147px;
+  }
 
-  .selectBox {
-    width: 212px;
-    height: 28px;
+  .location {
+    width: 150px;
   }
 
   .writeBox {
