@@ -1,6 +1,8 @@
 let selectDate = "";
-let siteList = "";
 const projectList = [];
+
+// 공통코드
+let siteList = [];
 
 $(document).ready(async () => {
   // 로딩시 당일 기준 조회
@@ -68,21 +70,23 @@ const getWeekOf = async () => {
 };
 
 const siteListSearch = async () => {
-  fnAjax("POST", "", "json", "/site/siteListSearch", "", function (data) {
-    siteList = data;
+  const comCdList = ["SITE_NO"];
+
+  fnCommonCdAjax(comCdList, function (data) {
+    siteList = data.filter((s) => s.parentCd === "SITE_NO");
     console.log(siteList);
     siteList.map((s) => {
       const option = $(
         "<label for=" +
-          s.siteNo +
+          s.comCd +
           ">" +
           "<input type='checkbox' name='siteNo' class='siteCheck' id='checkBox" +
-          s.siteNo +
+          s.comCd +
           "'" +
           "value=" +
-          s.siteNo +
+          s.comCd +
           ">" +
-          s.site +
+          s.comNm +
           "</label>"
       );
 
@@ -97,9 +101,9 @@ const siteListSearch = async () => {
       const siteName = [];
       const resionName = [];
       siteList.map((s) => {
-        if (projectList.includes(s.siteNo)) {
-          siteName.push(s.site);
-          resionName.push(s.resion);
+        if (projectList.includes(s.comCd)) {
+          siteName.push(s.comNm);
+          resionName.push(s.etc);
         }
       });
       if (projectList.length) {
@@ -118,13 +122,12 @@ const siteChange = (value) => {
   const resionList = value.split(",");
   const siteName = [];
   const resionName = [];
-
   siteList.map((s) => {
-    if (resionList.includes(s.siteNo)) {
-      projectList.push(s.siteNo);
-      siteName.push(s.site);
-      resionName.push(s.resion);
-      document.getElementById("checkBox" + s.siteNo).checked = true;
+    if (resionList.includes(s.comCd)) {
+      projectList.push(s.comCd);
+      siteName.push(s.comNm);
+      resionName.push(s.etc);
+      document.getElementById("checkBox" + s.comCd).checked = true;
     }
   });
   document.getElementById("selectText").innerText = siteName.join(", ");
@@ -190,7 +193,6 @@ const weeklyWorkSave = () => {
 // 수정버튼 클릭
 const weeklyWorkUpdate = () => {
   const data = $("form[name=form_weeklyWorkWrite]").serialize();
-  console.log(data);
   fnAjax("POST", "", "", "/workweek/weeklyWorkUpdate", data, function () {
     openAlertPop();
   });
