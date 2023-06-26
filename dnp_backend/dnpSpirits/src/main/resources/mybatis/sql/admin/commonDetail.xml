@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.dnpSpirits.kate.admin.mapper.AdminMapper">   
+    <!-- 공통코드 디테일 상세조회 -->
+    <select id="getCommonCdDDetailMapper" resultType="com.koko.dnpSpirits.kate.admin.dto.CommonCdVo">
+          SELECT D.COM_CD
+		       , D.COM_NM
+		       , D.ETC
+		       , D.ETC_DESC
+		       , D.PARENT_CD 
+		       , date_format(D.FIN_CRE_DTM, '%Y-%m-%d') AS  FIN_CRE_DTM
+			  FROM TB_COMMON_D D
+			 WHERE D.USE_YN = 'Y'  
+			   AND D.COM_CD = #{comCd}
+    </select>
+    
+    <!-- 공통코드 디테일 저장 -->
+    <insert id="commonCdDInsertMapper" parameterType="com.koko.dnpSpirits.kate.admin.dto.CommonCdVo">
+	        INSERT INTO TB_COMMON_D
+	        (COM_CD,COM_NM,ETC,ETC_DESC,PARENT_CD,USE_YN, VBG_CRE_USER_NO, VBG_CRE_DTM, FIN_CRE_USER_NO, FIN_CRE_DTM)
+	        VALUES(#{comCd},#{comNm},#{etc},#{etcDesc},#{parentCd},'Y',1,now(),1,now());  
+    </insert>
+    
+    <!-- 공통코드 디테일 수정 -->
+    <update id="commonCdDUpdateMapper" parameterType="com.koko.dnpSpirits.kate.admin.dto.CommonCdVo">
+    	  UPDATE TB_COMMON_D 
+			 SET COM_NM = #{comNm} 
+				,ETC = #{etc}
+				,ETC_DESC = #{etcDesc}
+				,FIN_CRE_USER_NO = #{finCreUserNo}
+				,FIN_CRE_DTM = now()
+		   WHERE COM_CD = #{comCd};
+    </update>
+    
+    
+</mapper>

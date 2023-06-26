@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.dnpSpirits.login.mapper.UserMapper">   
+    <!-- 생일자 조회 -->
+    <select id="getUserBirthSearch" resultType="com.koko.dnpSpirits.login.dto.UserVo">
+
+      SELECT CONCAT(SUBSTRING(D.birth,5,2),'.',SUBSTRING(D.birth,7,2)) AS BIRTH 
+           , U.user_name 
+		FROM tb_user_detail D, tb_user U 
+	   WHERE D.user_no = U.USER_NO 
+	  	 AND SUBSTRING(D.birth,6,1) = MONTH(NOW())
+	        
+    </select>
+</mapper>

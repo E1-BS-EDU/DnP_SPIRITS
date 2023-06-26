@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.dnpSpirits.kate.workingday.mapper.WorkingdayMapper">
+	
+    <!-- WorkingDay 등록/수정 -->
+    <insert id="saveWorkingDay" parameterType="java.util.List">
+		INSERT INTO tb_wkday
+			(work_date, user_no ,id ,gubun_cd, site_no, vbg_cre_user_no, vbg_cre_dtm, fin_cre_user_no, fin_cre_dtm)
+		VALUES
+			<foreach item="item" index="index" collection="list" separator=",">
+			(#{item.workDate}
+			, #{item.userNo}
+			, (select ifnull(max(id)+1,1)+#{index} from tb_wkday b where work_date=#{item.workDate} and user_no =#{item.userNo})
+			, #{item.gubunCd}
+			, #{item.siteNo}
+			, #{item.userNo}
+			, NOW()
+			, #{item.userNo}
+			, NOW())
+			</foreach>	
+		ON DUPLICATE KEY
+		UPDATE gubun_cd=VALUES(gubun_cd)
+			 , site_no = VALUES(site_no)
+			 , fin_cre_user_no = 1
+			 , fin_cre_dtm = NOW(); 	
+    </insert>
+    
+    <select id="selectWorkingDay" parameterType="hashMap" resultType="com.koko.dnpSpirits.kate.workingday.dto.WorkingdayVo">
+		SELECT A.work_date
+			 , A.user_no
+			 , A.id
+			 , A.gubun_cd
+			 , A.site_no
+			 , B.site AS site_nm
+			 , A.vbg_cre_user_no
+			 , A.vbg_cre_dtm
+			 , A.fin_cre_user_no
+			 , A.fin_cre_dtm
+		FROM tb_wkday A, tb_site B
+		WHERE A.work_date BETWEEN DATE_FORMAT(#{fromDt}, '%Y-%m-%d') AND DATE_FORMAT(#{endDt}, '%Y-%m-%d') 
+			AND A.user_no = #{userNo}
+			AND A.site_no = B.site_no
+	</select>
+	
+	<select id="selectWorkInfo" resultType="HashMap">
+		SELECT gubun_cd
+			 , gubun_a
+			 , gubun_b
+			 , gubun_desc
+		FROM tb_work
+	</select>
+	
+	<select id="selectSiteInfo" resultType="HashMap">
+		SELECT site_no
+			 , site
+			 , resion
+		FROM tb_site
+	</select>
+	 
+	<select id="workingdayDetail" 
+			parameterType="com.koko.dnpSpirits.kate.workingday.dto.WorkingdayVo" 
+			resultType="HashMap">
+		SELECT A.work_date
+			 , A.user_no
+			 , A.id
+			 , A.gubun_cd
+			 , B.gubun_a
+			 , B.gubun_b
+			 , B.gubun_desc
+			 , A.site_no
+			 , C.site
+			 , C.resion
+		FROM tb_wkday A
+			, tb_work B
+			, tb_site C
+		WHERE user_no = #{userNo}
+			AND work_date = DATE_FORMAT(#{workDate}, '%Y-%m-%d')
+			AND A.id = #{id}
+			AND A.gubun_cd = B.gubun_cd
+			AND A.site_no = C.site_no
+	</select>
+	
+	
+	<delete id="deleteWorkingDay" parameterType="java.util.HashMap">
+		
+	    delete from tb_wkday
+	    where 1=1
+         and DATE_FORMAT(work_date , '%Y-%m-%d') = #{workDate}
+         and id = #{id}
+	     and user_no = #{userNo}
+	      	
+    </delete>
+    
+</mapper>

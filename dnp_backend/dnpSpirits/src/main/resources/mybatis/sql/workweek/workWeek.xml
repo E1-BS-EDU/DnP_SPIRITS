@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.dnpSpirits.kate.workweek.mapper.WorkweekMapper">
+
+	<select id="workWeek" resultType="com.koko.dnpSpirits.kate.workweek.dto.WeeklyWorkVo">
+		SELECT user_no
+			 , week_no
+			 , site_no
+			 , this_week_plan
+			 , performance
+			 , next_week_plan
+			 , remarks
+	      FROM tb_weekly_work
+	     WHERE USER_NO = 1 AND WEEK_NO = #{weeklyKey};
+	</select>
+	
+	<update id="weeklyWorkWrite" parameterType="com.koko.dnpSpirits.kate.workweek.dto.WeeklyWorkVo">
+		INSERT 
+		  INTO red_test.tb_weekly_work
+			  (user_no
+			 , week_no
+			 , site_no
+			 , this_week_plan
+			 , performance
+			 , next_week_plan
+			 , remarks
+			 , vbg_cre_user_no
+			 , vbg_cre_dtm
+			 , fin_cre_user_no
+			 , fin_cre_dtm)
+	   VALUES (1
+	   		 , #{weekNo}
+	   		 , #{siteNo}
+	   		 , #{thisWeekPlan}
+	   		 , #{performance}
+	   		 , #{nextWeekPlan}
+	   		 , #{remarks}
+	   		 , 1
+	   		 , NOW()
+	   		 , 1
+	   		 , NOW());  
+    </update>
+	
+	<update id="weeklyWorkUpdate" parameterType="com.koko.dnpSpirits.kate.workweek.dto.WeeklyWorkVo">
+		UPDATE tb_weekly_work
+		   SET site_no			= #{siteNo}
+		     , this_week_plan	= #{thisWeekPlan}
+		     , performance		= #{performance}
+		     , next_week_plan	= #{nextWeekPlan}
+		     , remarks			= #{remarks}
+		     , fin_cre_user_no	= 1
+		     , fin_cre_dtm		= NOW()
+		 WHERE user_no=1 AND week_no=#{weekNo};   
+    </update>
+</mapper>

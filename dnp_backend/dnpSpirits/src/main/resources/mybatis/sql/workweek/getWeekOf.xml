@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koko.dnpSpirits.kate.workweek.mapper.WorkweekMapper">
+	<select id="getWeekOf" resultType="com.koko.dnpSpirits.kate.workweek.dto.WeekOfVo">
+		SELECT dt
+		     , dt + INTERVAL (1 - DAYOFWEEK(dt)) DAY sdt
+		     , dt + INTERVAL (7 - DAYOFWEEK(dt)) DAY edt
+		     , dt + INTERVAL (1 - DAYOFWEEK(dt) + 7) DAY nextSdt
+		     , dt + INTERVAL (7 - DAYOFWEEK(dt) + 7) DAY nextEdt
+		     , DATE_FORMAT(ym, '%Y-%m') ym
+		     , FLOOR(DATEDIFF(dt
+		       , ym + INTERVAL (1 - DAYOFWEEK(ym)
+		                          + CASE WHEN DAYOFWEEK(ym) > 4 THEN 7 ELSE 0 END) DAY
+		       ) / 7 + 1) weekOf
+		  FROM (SELECT DISTINCT
+		               DATE(#{today}) dt
+             		 , DATE_FORMAT(#{today} + INTERVAL (4 -DAYOFWEEK(#{today})) DAY, '%Y-%m-01') ym
+		        ) a
+		;
+	</select>
+</mapper>
